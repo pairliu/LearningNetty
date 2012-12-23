@@ -10,16 +10,16 @@ import org.jboss.netty.channel.SimpleChannelHandler;
 
 public class TimeClientHandler extends SimpleChannelHandler {
     @Override
-         public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
-              ChannelBuffer buf = (ChannelBuffer) e.getMessage();
-            long currentTimeMillis = buf.readInt() * 1000L;
-              System.out.println(new Date(currentTimeMillis));
-            e.getChannel().close();
-          }
-    
-          @Override
-        public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
-              e.getCause().printStackTrace();
-            e.getChannel().close();
-          }
+    public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
+        ChannelBuffer buf = (ChannelBuffer) e.getMessage();
+        long currentTimeMillis = buf.readInt() * 1000L;
+        System.out.println(new Date(currentTimeMillis));
+        e.getChannel().close();
+    }
+
+    @Override
+    public void exceptionCaught(ChannelHandlerContext ctx, ExceptionEvent e) {
+        e.getCause().printStackTrace();
+        e.getChannel().close();
+    }
 }

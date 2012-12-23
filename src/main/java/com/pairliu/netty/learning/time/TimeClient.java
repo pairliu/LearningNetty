@@ -23,7 +23,7 @@ public class TimeClient {
 
         bootstrap.setPipelineFactory(new ChannelPipelineFactory() {
             public ChannelPipeline getPipeline() {
-                return Channels.pipeline(new TimeClientHandler());
+                return Channels.pipeline(new TimeDecoder(), new TimeClientHandler());
             }
         });
 
