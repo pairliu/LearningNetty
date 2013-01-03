@@ -32,11 +32,11 @@ public class TimeServer {
         Channel channel = boot.bind(new InetSocketAddress(8080));
         allChannels.add(channel);
         
-        Thread.sleep(5000);
-        
-        ChannelGroupFuture future = allChannels.close();
-        future.awaitUninterruptibly();
-        fac.releaseExternalResources();
+//        Thread.sleep(5000);
+//        
+//        ChannelGroupFuture future = allChannels.close();
+//        future.awaitUninterruptibly();
+//        fac.releaseExternalResources();
     }
 
 }

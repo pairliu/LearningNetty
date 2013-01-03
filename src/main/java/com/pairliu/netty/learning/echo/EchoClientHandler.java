@@ -9,8 +9,11 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.ExceptionEvent;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EchoClientHandler extends SimpleChannelUpstreamHandler {
+    private static Logger LOG = LoggerFactory.getLogger(EchoServerHandler.class);
     
     private final ChannelBuffer message;
     private final AtomicLong transferredBytes = new AtomicLong();
@@ -29,7 +32,7 @@ public class EchoClientHandler extends SimpleChannelUpstreamHandler {
     @Override
     public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) throws Exception {        
         ChannelBuffer buffer = (ChannelBuffer)(e.getMessage());
-        System.out.println("Echo back: " + buffer);
+        LOG.info("Echo back: " + buffer);
         transferredBytes.addAndGet(buffer.readableBytes());
         e.getChannel().write(buffer);
     }
